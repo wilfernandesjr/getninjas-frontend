@@ -1,0 +1,56 @@
+.tab {
+  display: block;
+  width: 100%;
+
+  &__header  {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    border-bottom: 2px solid rgba(19,147,246,0.2);
+    margin: 0 auto 36px;
+    text-align: center;
+  }
+
+  &__title,
+  &__description {
+    display: block;
+    width: 100%;
+    color: $mainColor;
+    font-size: 24px;
+    font-weight: 900;
+    font-style: italic;
+  }
+
+  &__description {
+    font-weight: 400;
+    margin-top: 4px;
+  }
+
+  &__form {
+    width: 100%;
+    display: block;
+
+    input[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 17px;
+      border: none;
+      border-radius: $radius;
+      margin-top: 36px;
+      font-size: 14px;
+      font-family: $mainFont;
+      font-weight: 900;
+      text-align: center;
+      text-transform: uppercase;
+      color: #fff;
+      background: $mainColor;
+      transition: border-color .2s ease-in, box-shadow .2s ease-in, background-color .2s ease-in,color .3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: #1272d5;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      }
+    }
+  }
+}
