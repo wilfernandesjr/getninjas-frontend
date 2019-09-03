@@ -1,0 +1,25 @@
+@import 'variables.scss';
+@import 'reset.scss';
+@import '../containers/DynamicForm/index.scss';
+@import '../containers/Tab/index.scss';
+@import '../components/SelectItem/index.scss';
+@import '../components/TextareaItem/index.scss';
+
+main {
+  display: block;
+  width: 100%;
+  padding: 30px 2.5%;
+  background: rgb(249, 249, 249);
+}
+
+footer {
+  width: 100%;
+  display: block;
+  text-align: center;
+  line-height: 50px;
+  padding-bottom: 30px;
+
+  p {
+    margin: 0 auto;
+  }
+}
