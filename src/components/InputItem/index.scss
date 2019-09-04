@@ -1,0 +1,51 @@
+.inputItem {
+  width: 100%;
+  display: block;
+  margin-top: 16px;
+
+  &.inputItem--short input {
+    width: 188px;
+  }
+
+  label {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  input {
+    width: 100%;
+    display: block;
+    border: 1px solid rgba(19,147,246,0.5);
+    border-radius: $radius;
+    padding: 13px 11px;
+    outline: none;
+    background-color: #eff4fa;
+    font-size: 16px;
+    color: rgba(0,0,0,0.7);
+    transition: box-shadow .18s;
+
+    &:hover {
+      box-shadow: 0 0 1px 1px rgba(19,147,246,0.5);
+      background: #fff;
+      outline: none;
+    }
+  }
+
+  &__message {
+    display: none;
+  }
+
+  &.has-error {
+    input {
+      border-color: #b24141;
+    }
+    .inputItem__message {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #b24141;
+    }
+  }
+}
