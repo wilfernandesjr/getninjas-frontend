@@ -1,5 +1,6 @@
+import html from 'tagged-template-noop'
 import { renderElement, toJSON } from '../../services/utils.js'
-
+import { validate } from '../../services/validate.js'
 import { Component } from '../Component'
 
 class InputItem extends Component {
@@ -7,26 +8,55 @@ class InputItem extends Component {
     this.props = {
       key: this.getAttribute('key'),
       field: toJSON(this.getAttribute('field')),
+      theme: this.getAttribute('theme'),
       message: this.getAttribute('message')
     }
     this.render()
 
-    const $textarea = this.querySelector('input')
-    $textarea.addEventListener('focusout', this.handleChange.bind(this))
+    const $input = this.querySelector('input')
+    $input.addEventListener('focusout', this.handleFocusout.bind(this))
+    $input.addEventListener('keyup', this.handleKeyup.bind(this))
   }
 
-  handleChange (e) {
-    const $input = e.currentTarget
-    if (!$input.value && $input.getAttribute('required')) {
-      return this.classList.add('has-error')
+  validate (element, field) {
+    if (!field.required) return
+
+    if (!element.value) {
+      element.closest('[data-wrapper]').classList.add('has-error')
+      return
     }
-    this.classList.remove('has-error')
+
+    if (field.type === 'cep' || field.type === 'phone' || field.type === 'email') {
+      if (!validate[field.type](element.value)) {
+        element.closest('[data-wrapper]').classList.add('has-error')
+        return
+      }
+    }
+
+    element.closest('[data-wrapper]').classList.remove('has-error')
+  }
+
+  handleFocusout (e) {
+    const $input = e.currentTarget
+    this.validate($input, this.props.field)
+  }
+
+  handleKeyup (e) {
+    const { type } = this.props.field
+    const { value } = e.currentTarget
+
+    switch (type) {
+      case 'cep':
+        return e.currentTarget.value = value.replace(/\D/g, '').substring(0, 8)
+      case 'phone':
+        return e.currentTarget.value = value.replace(/\D/g, '').substring(0, 11)
+    }
   }
 
   render () {
-    const { key, field, message } = this.props
-    renderElement(this, `
-      <div class="inputItem">
+    const { key, field, theme, message } = this.props
+    renderElement(this, html`
+      <div class="inputItem ${theme ? `inputItem--${theme}` : ''}" data-wrapper>
         ${field.label ? `<label for="${key}">${field.label}</label>` : ''}
         <input
           type="text"
@@ -34,7 +64,7 @@ class InputItem extends Component {
           placeholder="${field.placeholder}"
           ${field.required ? 'required="true"' : ''}
         >
-        ${field.required ? '<span class="inputItem__message">${message}</span>' : ''}
+        ${field.required ? `<span class="inputItem__message">${message}</span>` : ''}
       </div>
     `)
   }
