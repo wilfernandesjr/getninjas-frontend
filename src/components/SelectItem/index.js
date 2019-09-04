@@ -1,8 +1,8 @@
+import html from 'tagged-template-noop'
 import {
   renderElement,
   toJSON
 } from '../../services/utils.js'
-
 import { Component } from '../Component'
 
 class SelectItem extends Component {
@@ -22,15 +22,15 @@ class SelectItem extends Component {
     const $select = e.currentTarget
     const $selectWrapper = this.querySelector('.selectItem')
     if (!$select.value && $select.getAttribute('required')) {
-      return $selectWrapper.classList.add('selectItem--error')
+      return $selectWrapper.classList.add('has-error')
     }
-    $selectWrapper.classList.remove('selectItem--error')
+    $selectWrapper.classList.remove('has-error')
   }
 
   render () {
     const { key, field, message } = this.props
-    renderElement(this, `
-      <div class="selectItem">
+    renderElement(this, html`
+      <div class="selectItem" data-wrapper>
         ${field.label ? `<label for="${key}">${field.label}</label>` : ''}
         <select
           id="${key}"
