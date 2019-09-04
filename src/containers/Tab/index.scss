@@ -1,3 +1,7 @@
+[status="inactive"] .tab {
+  display: none;
+}
+
 .tab {
   display: block;
   width: 100%;
@@ -9,6 +13,11 @@
     border-bottom: 2px solid rgba(19,147,246,0.2);
     margin: 0 auto 36px;
     text-align: center;
+
+    img {
+      display: block;
+      margin: 0 auto 16px;
+    }
   }
 
   &__title,
@@ -24,6 +33,29 @@
   &__description {
     font-weight: 400;
     margin-top: 4px;
+  }
+
+  &--grey {
+    .tab__header  {
+      border-bottom: none;
+      margin-bottom: 4px;
+    }
+
+    .tab__title {
+      color: #536e7b;
+      font-size: 20px;
+      font-weight: 900;
+      font-style: italic;
+    }
+  
+    .tab__description {
+      font-weight: 400;
+      font-size: 16px;
+      margin-top: 16px;
+      text-align: left;
+      color: #536e7b;
+      font-style: normal;
+    }
   }
 
   &__form {
@@ -46,6 +78,7 @@
       background: $mainColor;
       transition: border-color .2s ease-in, box-shadow .2s ease-in, background-color .2s ease-in,color .3s ease;
       cursor: pointer;
+      outline: none;
 
       &:hover {
         background: #1272d5;
