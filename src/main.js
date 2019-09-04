@@ -7,7 +7,7 @@ import './containers/DynamicForm'
 class MainApp extends HTMLElement {
   async connectedCallback () {
     this.props = {
-      forms: (await getForm())._embedded
+      forms: await getForm()
     }
     this.render()
   }
