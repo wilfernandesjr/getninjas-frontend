@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - "8"
+
+cache:
+  directories:
+  - node_modules
+
+install:
+  - yarn install
+
+script:
+  - yarn build 
+
+deploy:
+  provider: s3
+  access_key_id: AKIAXPWXTAUVEOV4WA44
+  secret_access_key:
+    secure: "tmku4R8Y3tlRyxP3LsZOaC0itHOytMttKD6VZJQpANEoPXI1Wb02rIdM/hI+lxSNIkh+MpidRdXEQyIGJCKgkHykLBk9rVD374bIV2QHid1fc9XKc2Wi5fGTYYnlwt289gaNGwRJOBjhcBzC5nABkml+BMb53CXoR5mB80aevHUbCj7ROQiCmnCi9Dvj/gLFCG7/MTLHUo1Fisoe62MQCgmSx/UABYtuIzOH6BUQGbFOQJ4wNauRt81uX2ElZMYgx9IHLKqit/Jw9vzsjTfK71nKKWV8Y06RpO/03Rs7MUOHDWTHk6uf7z9GBaR+tCLNcNEn8dMnDLOTOgMjRMUIHN2Ig2o9JY4f9bzOJN6pIkdjboxfeLM56Tl1iCrQuPPy6W5bP3esp3ZfSBsjvTvTYd95F9dkoVFQ76OgK9xJAzoEjz0CDhmv6CdMSHp2Xe8c/A7K+NuGJHHuE3B7CYb4l1bOJh/BIuzQuKGLjOjSrlFZ/dBaV5cywED/0TB/svv6HdzfYvLqSsdkjZPh696Me7HXTGz77hTgJoOYBudH9YUxMYRXg0F9s1wL/SSo8wQkJRkDWGa7+ZCvOiQ7oBLBn9ZqyzfcjnHPT2PgtDc475tHph0zV4G/pEgArv+df9af1SAl2d4sWjf5GZiPAOcNl4omqWwe/5HonsoOsOPzit4="
+  bucket: "getninjas.wilfernandes.com.br"
+  skip_cleanup: true
+  region: sa-east-1
+  local_dir: public/
+  acl: public_read
+branches:
+  only:
+  - master
