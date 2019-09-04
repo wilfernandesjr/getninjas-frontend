@@ -1,23 +1,22 @@
-import { DynamicForm } from './containers/DynamicForm'
-
+import html from 'tagged-template-noop'
+import { renderElement, stringify } from './services/utils'
 import { getForm } from './services/getForm'
 
+import './containers/DynamicForm'
+
 class MainApp extends HTMLElement {
-  static get observedAttributes () {
-    return ['data-name']
-  }
-
-  async render () {
-    const forms = (await getForm())._embedded
-    this.innerHTML = DynamicForm({ forms })
-  }
-
   async connectedCallback () {
-    await this.render()
+    this.props = {
+      forms: (await getForm())._embedded
+    }
+    this.render()
   }
 
-  attributeChangedCallback (attrName, oldVal, newVal) {
-    this.render()
+  render () {
+    const { forms } = this.props
+    renderElement(this, html`
+      <dynamic-form forms='${stringify(forms)}'></dynamic-form>
+    `)
   }
 }
 
