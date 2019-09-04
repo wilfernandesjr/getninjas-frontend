@@ -19,7 +19,7 @@
     outline: none;
     background-color: #eff4fa;
     font-size: 16px;
-    color: rgba(0,0,0,0.5);
+    color: rgba(0,0,0,0.7);
     transition: box-shadow .18s;
   }
 
@@ -33,7 +33,7 @@
     display: none;
   }
 
-  &--error {
+  &.has-error {
     textarea {
       border-color: #b24141;
     }

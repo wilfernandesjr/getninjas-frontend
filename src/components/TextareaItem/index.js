@@ -1,5 +1,5 @@
+import html from 'tagged-template-noop'
 import { renderElement, toJSON } from '../../services/utils.js'
-
 import { Component } from '../Component'
 
 class TextareaItem extends Component {
@@ -19,15 +19,15 @@ class TextareaItem extends Component {
     const $textarea = e.currentTarget
     const $textareaWrapper = this.querySelector('.textareaItem')
     if (!$textarea.value && $textarea.getAttribute('required')) {
-      return $textareaWrapper.classList.add('textareaItem--error')
+      return $textareaWrapper.classList.add('has-error')
     }
-    $textareaWrapper.classList.remove('textareaItem--error')
+    $textareaWrapper.classList.remove('has-error')
   }
 
   render () {
     const { key, field, message } = this.props
-    renderElement(this, `
-      <div class="textareaItem">
+    renderElement(this, html`
+      <div class="textareaItem" data-wrapper>
         ${field.label ? `<label for="${key}">${field.label}</label>` : ''}
         <textarea
           id="${key}"
@@ -43,4 +43,3 @@ class TextareaItem extends Component {
 
 customElements.define('textarea-item', TextareaItem)
 document.createElement('textarea-item')
-
