@@ -1,6 +1,6 @@
 describe('Request Fields Form...', function() {
   it('should have its header rendered correctly', function() {
-    cy.visit('https://s3-sa-east-1.amazonaws.com/getninjas.wilfernandes.com.br/index.html')
+    cy.visit('http://localhost:8080/public/')
 
     cy.contains('Explique o que você precisa')
       .should('be.visible')
@@ -10,7 +10,7 @@ describe('Request Fields Form...', function() {
   })
 
   it('should have all related fields visibles', function() {
-    cy.visit('https://s3-sa-east-1.amazonaws.com/getninjas.wilfernandes.com.br/index.html')
+    cy.visit('http://localhost:8080/public/')
 
     cy.get('[key="request_fields_enumerable_0"] label').contains('Qual será o serviço')
     cy.get('#request_fields_enumerable_0').should('be.visible')
@@ -29,7 +29,7 @@ describe('Request Fields Form...', function() {
   })
 
   it('should be the only tab visible', function() {
-    cy.visit('https://s3-sa-east-1.amazonaws.com/getninjas.wilfernandes.com.br/index.html')
+    cy.visit('http://localhost:8080/public/')
 
     cy.get('#request_fields').should('be.visible')
     cy.get('#user_fields').should('not.be.visible')
@@ -37,7 +37,7 @@ describe('Request Fields Form...', function() {
   })
 
   it('should warn user when a required field is not filled properly', function() {
-    cy.visit('https://s3-sa-east-1.amazonaws.com/getninjas.wilfernandes.com.br/index.html')
+    cy.visit('http://localhost:8080/public/')
 
     // Select empty value option
     cy.get('#request_fields_enumerable_0').select('tipo de serviço')
@@ -57,14 +57,14 @@ describe('Request Fields Form...', function() {
   })
 
   it('should have its own tab indicator activated', function() {
-    cy.visit('https://s3-sa-east-1.amazonaws.com/getninjas.wilfernandes.com.br/index.html')
+    cy.visit('http://localhost:8080/public/')
 
     cy.get('[data-nav-request]').should('have.class', 'tabsList__item--active')
     cy.get('[data-nav-user]').should('not.have.class', 'tabsList__item--active')
   })
 
   it('should submit a form and became invisible when all required fields are properly filled', function() {
-    cy.visit('https://s3-sa-east-1.amazonaws.com/getninjas.wilfernandes.com.br/index.html')
+    cy.visit('http://localhost:8080/public/')
 
     cy.get('#request_fields_enumerable_0').select('Corte')
     cy.get('#request_fields_enumerable_3').select('Nos próximos 30 dias')

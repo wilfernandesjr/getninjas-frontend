@@ -1,5 +1,5 @@
 const renderUserFields = cy => {
-  cy.visit('https://s3-sa-east-1.amazonaws.com/getninjas.wilfernandes.com.br/index.html')
+  cy.visit('http://localhost:8080/public/')
   cy.get('#request_fields_enumerable_0').select('Corte')
   cy.get('#request_fields_enumerable_3').select('Nos próximos 30 dias')
   cy.get('#request_fields form').submit()
@@ -7,7 +7,7 @@ const renderUserFields = cy => {
 
 describe('User Fields Form...', function() {
   it('should be visible after request fields form is properly filled', function() {
-    cy.visit('https://s3-sa-east-1.amazonaws.com/getninjas.wilfernandes.com.br/index.html')
+    cy.visit('http://localhost:8080/public/')
 
     cy.get('#user_fields').should('not.be.visible')
 
