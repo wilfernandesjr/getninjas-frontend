@@ -6,6 +6,8 @@
     "dev:assets": "webpack --watch",
     "dev:start": "live-server --open=./public/ --host=localhost --watch=./public/",
     "dev": "npm-run-all -p dev:*",
+    "test": "node_modules/jest/bin/jest.js",
+    "test:watch": "yarn test --watch",
     "standard": "node_modules/standard/bin/cmd.js src/",
     "build": "cross-env NODE_ENV=production webpack"
   },
@@ -25,6 +27,7 @@
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
     "file-loader": "^4.2.0",
+    "jest": "^24.9.0",
     "lit-html": "^1.1.2",
     "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^0.8.0",
