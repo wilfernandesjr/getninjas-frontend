@@ -53,6 +53,19 @@ class InputItem extends Component {
     }
   }
 
+  fallbackPlaceholder (type) {
+    switch (type) {
+      case 'cep':
+        return 'Ex.: 01135020'
+      case 'phone':
+        return 'Ex.: 27995118191'
+      case 'email':
+        return 'Ex.: wilmar@gmail.com'
+      default:
+        return 'Digite aqui'
+    }
+  }
+
   render () {
     const { key, field, theme, message } = this.props
     renderElement(this, html`
@@ -61,7 +74,7 @@ class InputItem extends Component {
         <input
           type="text"
           id="${key}"
-          placeholder="${field.placeholder}"
+          placeholder="${field.placeholder || this.fallbackPlaceholder(field.type)}"
           ${field.required ? 'required="true"' : ''}
         >
         ${field.required ? `<span class="inputItem__message">${message}</span>` : ''}
