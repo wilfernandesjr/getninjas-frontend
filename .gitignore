@@ -62,3 +62,7 @@ typings/
 
 public/assets/scripts/*.js
 public/assets/styles/*.css
+
+cypress/plugins/
+cypress/support/
+cypress/videos/

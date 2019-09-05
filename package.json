@@ -6,8 +6,9 @@
     "dev:assets": "webpack --watch",
     "dev:start": "live-server --open=./public/ --host=localhost --watch=./public/",
     "dev": "npm-run-all -p dev:*",
-    "test": "node_modules/jest/bin/jest.js",
-    "test:watch": "yarn test --watch",
+    "cypress": "yarn dev & wait-on http://localhost:8080; cypress run",
+    "test": "node_modules/jest/bin/jest.js; yarn run cypress",
+    "test:watch": "node_modules/jest/bin/jest.js test --watch",
     "standard": "node_modules/standard/bin/cmd.js src/",
     "build": "cross-env NODE_ENV=production webpack"
   },
@@ -18,6 +19,9 @@
       "customElements",
       "HTMLElement"
     ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["/node_modules/", "/cypress/"]
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -39,6 +43,7 @@
     "sass-loader": "^8.0.0",
     "standard": "^14.1.0",
     "tagged-template-noop": "^2.1.0",
+    "wait-on": "^3.3.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7"
   },
